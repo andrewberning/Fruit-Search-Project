@@ -5,29 +5,15 @@ const fruit = ['Apple', 'Apricot', 'Avocado', 'Banana', 'Bilberry', 'Blackberry'
 
 function search(str) {
   // TODO
-  const results = fruit.filter(val => {
+  return fruit.filter(val => {
     return val.toLowerCase().includes(str.toLowerCase());
-  })
-
-  if (!results.length) {
-    suggestions.innerHTML = "";
-  }
-
-  return results.slice(0, 10);
+  }).slice(0, 10);
 }
 
 function searchHandler() {
   // TODO
   const inputValue = input.value;
-
-  if (!inputValue.length) {
-    suggestions.innerHTML = "";
-  }
-
-  if (inputValue.length) {
-    const resultsOfSearch = search(inputValue)
-    showSuggestions(resultsOfSearch)
-  }
+  inputValue.length ? showSuggestions(search(inputValue)) : suggestions.innerHTML = "";
 }
 
 function showSuggestions(results) {
@@ -36,8 +22,9 @@ function showSuggestions(results) {
 
   return results.map(item => {
     const newLi = document.createElement("li");
-    newLi.textContent = item;
+    newLi.innerText = item;
     newLi.style.background = "rgb(255,190,0)"
+
     newLi.addEventListener("mouseover", (e) => {
       e.target.style.background = "rgb(255, 95, 0)"
     })
@@ -52,7 +39,7 @@ function showSuggestions(results) {
 function useSuggestion(e) {
   // TODO
   const target = e.target;
-  input.value = target.innerHTML;
+  input.value = target.innerText;
   suggestions.innerHTML = "";
 }
 
