@@ -5,6 +5,7 @@ const fruit = ['Apple', 'Apricot', 'Avocado', 'Banana', 'Bilberry', 'Blackberry'
 
 function search(str) {
   // TODO
+  // returns an array of first 10 values that have the same string being passed in the function
   return fruit.filter(val => {
     return val.toLowerCase().includes(str.toLowerCase());
   }).slice(0, 10);
@@ -12,12 +13,17 @@ function search(str) {
 
 function searchHandler() {
   // TODO
+  // This function is for the "keyup" event listener.
+  // It grabs the current value in the input,
+  // if it has length, use showSuggestions function and pass in search function using the inputValue as its argument.
+  // otherwise clear the suggestions html
   const inputValue = input.value;
   inputValue.length ? showSuggestions(search(inputValue)) : suggestions.innerHTML = "";
 }
 
 function showSuggestions(results) {
   // TODO
+  // Clears the innerHTML of suggestions, then creates li's to append to suggestions.
   suggestions.innerHTML = "";
 
   return results.map(item => {
@@ -38,6 +44,7 @@ function showSuggestions(results) {
 
 function useSuggestion(e) {
   // TODO
+  // grabs the element that was clicked on, and changes the value of the input to be the innerText, clear the suggestions innerHTML.
   const target = e.target;
   input.value = target.innerText;
   suggestions.innerHTML = "";
